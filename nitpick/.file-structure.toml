@@ -1,0 +1,17 @@
+[nitpick.styles]
+include = [
+  "py://nitpick/resources/python/absent"
+]
+
+[nitpick.files.absent]
+".isort.cfg" = "Use ruff instead of isort."
+".flake8" = "Use ruff instead of flake8."
+"ruff.toml" = "Move values to pyproject.toml, section [tool.ruff]."
+"pytest.ini" = "Move values to pyproject.toml, section [tool.pytest.ini_options]."
+
+
+[nitpick.files.present]
+"README.md" = "A project should have `README.md`"
+".gitignore" = "A project should have `.gitignore`"
+".dockerignore" = "A project should have `.dockerignore`"
+".pre-commit-config.yaml" = "A project should have `.pre-commit-config.yaml`"

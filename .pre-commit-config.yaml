@@ -1,0 +1,53 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff
+        description: "Run 'ruff' for extremely fast Python linting"
+        ignore: [ PT004 ]
+        entry: poetry run ruff check --force-exclude
+        language: python
+        types_or: [ python, pyi, jupyter ]
+        args: [--config, pyproject.toml]
+        exclude: ^migrations/
+        require_serial: true
+        additional_dependencies: [ ]
+        minimum_pre_commit_version: "2.9.2"
+        always_run: true
+
+      - id: ruff-format
+        name: ruff-format
+        description: "Run 'ruff format' for extremely fast Python formatting"
+        entry: poetry run ruff format --force-exclude
+        language: python
+        types_or: [ python, pyi, jupyter ]
+        args: [--config, pyproject.toml]
+        exclude: ^migrations/
+        require_serial: true
+        additional_dependencies: [ ]
+        minimum_pre_commit_version: "2.9.2"
+        always_run: true
+
+      - id: poetry-lock
+        name: poetry lock
+        description: "Poetry lock requirements"
+        entry: make freeze
+        language: python
+        always_run: true
+
+      - id: freeze-requirements
+        name: freeze requirements
+        description: "Poetry freeze requirements"
+        entry: make freeze
+        language: python
+        always_run: true
+
+      - id: pytest
+        name: pytest
+        description: 'Run tests with pytest'
+        entry: pytest
+        language: python
+        types: [ python ]
+        require_serial: true
+        pass_filenames: false
+        always_run: true

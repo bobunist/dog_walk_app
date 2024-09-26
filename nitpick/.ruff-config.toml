@@ -1,0 +1,63 @@
+["pyproject.toml".tool.poetry.group.dev.dependencies]
+ruff = "^0.6.4"
+
+["pyproject.toml".tool.ruff]
+src = ["src", "test"]
+line-length = 89
+show-fixes = true
+include = [
+  "**/src/**.py"
+]
+exclude = [
+  ".yaml",
+  ".yml",
+]
+
+["pyproject.toml".tool.ruff.lint]
+select = [
+  "ANN", # flake8-annotations
+  "B", # flake8-bugbear
+  "C4", # flake8-comprehensions
+  "COM", # flake8-commas
+  "D", # pydocstyle
+  "E", # pycodestyle errors
+  "F", # pyflakes
+  "FAST", # fastapi
+  "G", # flake8-logging-format
+  "I", # isort
+  "PT", # flake8-pytest-style
+  "Q", # flake8-quotes
+  "R", # refactor
+  "RET", # flake8-return
+  "SIM", # flake8-simplify
+  "T20", # flake8-print
+  "UP", # pyupgrade
+  "W", # pycodestyle warnings
+]
+ignore = [
+  "ANN101", # missing self type annotation
+  "D203", # one-blank-line-before-class
+  "D212", # multi-line-summary-second-line
+  "ANN204", # missing return type annotation for special method `__init__`
+  "RET504", # unnecessary assignment to `data` before `return` statement
+  "D100", # missing docstring in public module
+  "D104", # missing docstring in public package
+  #  "WPS331", # reudant local variables that are only used in return statements
+  #  "WPS501", # forbid finally in try block without except block
+]
+
+["pyproject.toml".tool.ruff.lint.extend-per-file-ignores]
+"__init__.py" = []
+"tests/**.py" = [
+  "ANN201", # missing return type annotation for public function
+  "D103", # missing docstring in public function
+  "S101", # use of assert detected
+  "PT004", # fixture does not return anything, add leading underscore
+  "PT014" # pytest-duplicate-parametrize-test-cases
+]
+"**exception**.py" = [
+  "D102", # Missing docstring in public method
+]
+"**/models/**" = [
+  "F821" # undefined-name
+]
